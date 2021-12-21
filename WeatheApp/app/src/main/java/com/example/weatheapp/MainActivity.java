@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "could not find Current Location", Toast.LENGTH_SHORT).show();
         }
         else{
-            cityNameTV.setText(cityName);
+            cityNameTV.setText(cityName.toUpperCase());
             getWeatherInfo(cityName);
             //setBackgound(isDay);
         }
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    cityNameTV.setText(city);
+                    cityNameTV.setText(city.toUpperCase());
                     getWeatherInfo(city);
                     // setBackgound(isDay);
                 }
@@ -148,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         {
             if(grantResults.length > 0 && grantResults[0]== PackageManager.PERMISSION_GRANTED )
             {
-                Toast.makeText(this, "permission gratnted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "permission granted", Toast.LENGTH_SHORT).show();
 
             }
             else
@@ -187,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
         is.close();
         return sb.toString();
     }
+
     public void setBackgound( int isDay){
         Runnable background = new Runnable() {
             @Override
@@ -194,9 +196,12 @@ public class MainActivity extends AppCompatActivity {
                 String str;
                 if(isDay==1) {
                     /// day time
+                   // str = "//www.worldatlas.com/r/w960-q80/upload/a5/e5/43/shutterstock-520412536.jpg";
+                    temperatureTV.setTextColor(Color.WHITE);
                     str = "//images.theconversation.com/files/349332/original/file-20200724-37-bc1uu3.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=754&fit=clip";
                 }
                 else {
+                    temperatureTV.setTextColor(Color.WHITE);
                     str = "//images.unsplash.com/photo-1528722828814-77b9b83aafb2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80";
                 }
                 setImg(str, R.id.idIVBack);
@@ -204,9 +209,20 @@ public class MainActivity extends AppCompatActivity {
         };
         new Thread(background).start();
     }
+
     public Handler th = new Handler(){
         public void handleMessage(android.os.Message message){
-            if (message.what== 1){
+            if(message.what == 0){
+                loadingPB.setVisibility(View.GONE);
+                homeRl.setVisibility(View.VISIBLE);
+                weatherRVAdapter.notifyDataSetChanged();
+            }
+            else if(message.what == -1){
+                loadingPB.setVisibility(View.VISIBLE);
+                homeRl.setVisibility(View.GONE);
+                weatherRVAdapter.notifyDataSetChanged();
+            }
+            else if (message.what== 1){
                 tb0.setText(textViewTable.get(0));
                 tb1.setText(textViewTable.get(1));
                 tb2.setText(textViewTable.get(2));
@@ -214,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
                 tb4.setText(textViewTable.get(4));
                 tb5.setText(textViewTable.get(5));
                 tb6.setText(textViewTable.get(6));
-                
             }
             else if(message.what ==2){
                 setImg(imageViewTable.get(0), R.id.daily_img1);
@@ -225,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
                 setImg(imageViewTable.get(5), R.id.daily_img6);
                 setImg(imageViewTable.get(6), R.id.daily_img7);
             }
-            weatherRVAdapter.notifyDataSetChanged();
+
         }
     };
     public void getWeatherInfo(String cityName) {
@@ -238,7 +253,11 @@ public class MainActivity extends AppCompatActivity {
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
                     // Starts the query
-                    conn.connect();
+                    try {
+                        conn.connect();
+                    }catch(Exception e){
+                        th.sendEmptyMessage(-1);
+                    }
                     InputStream in = new BufferedInputStream(conn.getInputStream());
                     String data = readStream(in);
                     JSONObject response = new JSONObject(data);
@@ -267,7 +286,9 @@ public class MainActivity extends AppCompatActivity {
                         String wind = hourObj.getString("wind_kph");
                         weatherRVModalArrayList.add(new WeatherRVModal(time, temp_c,img, wind));
                     }
-                    th.sendEmptyMessage(0);
+                    if(response != null ){
+                        th.sendEmptyMessage(0);
+                    }
                     Log.i("test3", Double.toString(lat));
                     Log.i("test3", Double.toString(lon));
                     getDailyinfo(lat, lon);
@@ -278,8 +299,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         new Thread(getCurrentWeather).start();
-        loadingPB.setVisibility(View.GONE);
-        homeRl.setVisibility(View.VISIBLE);
     }
     public void setImg(String icon,int id ){
         Runnable imageThread = new Runnable() {

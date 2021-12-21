@@ -7,20 +7,18 @@
     android:background="@color/black_shade_1"
     tools:context=".MainActivity">
 
-
-
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/idPBLoading"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_centerInParent="true"
         />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/idRLHome"
-        android:visibility="invisible"
+        android:visibility="gone"
         >
 
         <ImageView
@@ -50,14 +48,13 @@
             android:layout_below="@+id/idTVCityName"
             android:weightSum="5"
             >
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/idTILCity"
                 android:layout_width="289dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="0dp"
                 android:layout_marginBottom="10dp"
                 android:background="@android:color/transparent"
                 android:hint="Enter City Name"
@@ -74,37 +71,39 @@
                     android:inputType="text"
                     android:singleLine="true"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
-
+                    android:textSize="14sp"
+                />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/idIVSearch"
-                android:layout_width="62dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:layout_weight="0.5"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_search"
-                app:tint="@color/white" />
+                <ImageView
+                    android:id="@+id/idIVSearch"
+                    android:layout_width="62dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="0dp"
+                    android:layout_weight="0.5"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/white"
+                />
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/idTVTemperature"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/idLLEdt"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:gravity="center_horizontal"
-            android:padding="5dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_rounded"
+            android:padding="2dp"
             android:text="23"
-            android:textColor="@color/white"
-            android:textSize="70dp" />
+            android:textColor="@color/cardview_light_background"
+            android:textSize="60dp" />
 
         <ImageView
             android:id="@+id/idIVIcon"
@@ -113,28 +112,40 @@
             android:layout_below="@id/idTVTemperature"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
-            android:src="@mipmap/ic_launcher" />
-
+            android:src="@drawable/clipart2690182" />
         <TextView
             android:id="@+id/idTVCondition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/idIVIcon"
             android:layout_marginStart="18dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="0dp"
             android:layout_marginEnd="18dp"
-            android:layout_marginBottom="18dp"
+            android:layout_marginBottom="5dp"
             android:gravity="center"
             android:text="Condition"
             android:textAlignment="center"
             android:textColor="@color/white" />
 <!--        android:background="@color/black_shade_1"-->
-        <ScrollView
+        <TextView
+            android:id="@+id/daily_text"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="18dp"
+            android:text="Daily Forecast"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_below="@+id/idTVCondition"
+            />
+        <ScrollView
+            android:id="@+id/scrollable"
+            android:layout_centerInParent="true"
+            android:layout_width="325dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/daily_text"
             android:layout_marginLeft="5dp"
-            >
+        >
         <TableLayout
             android:id="@+id/tableId"
             android:layout_width="match_parent"
@@ -142,181 +153,223 @@
             android:orientation="vertical"
             >
             <TableRow
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@color/black_shade_1"
+            android:background="@drawable/bg_rounded"
+            android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/textId1"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="gravity"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="25dp"
+                        android:textColor="@color/white"
+                    />
+                    <ImageView
+                        android:id="@+id/daily_img1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/clipart2690182"
+                    />
+                </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:background="@drawable/bg_rounded"
                 android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:layout_height="25dp"
                 app:cardElevation="6dp"
                 app:cardCornerRadius="10dp"
                 >
-<!--                <LinearLayout-->
-<!--                    android:orientation="horizontal">-->
-                <TextView
-                    android:textSize="25dp"
-                    android:id="@+id/textId1"
-                    android:text="test      "
-                    android:layout_width="250dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/textId2"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="gravity"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="25dp"
+                        android:textColor="@color/white"
                     />
-                <ImageView
-                    android:id="@+id/daily_img1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_margin="10dp"
-                    android:src="@mipmap/ic_launcher"
-                />
-<!--                </LinearLayout>-->
-
+                    <ImageView
+                        android:id="@+id/daily_img2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/clipart2690182"
+                    />
+                </LinearLayout>
             </TableRow>
             <TableRow
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@color/black_shade_1"
+                android:background="@drawable/bg_rounded"
                 android:layout_marginBottom="5dp"
-                android:layout_width="100dp"
-                android:padding="5dp"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="10dp">
-                <TextView
-                    android:id="@+id/textId2"
-                    android:textSize="25dp"
-                    android:text="test          "
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-                <ImageView
-                    android:id="@+id/daily_img2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_margin="10dp"
-                    android:src="@mipmap/ic_launcher"
-                    />
-            </TableRow>
-            <TableRow
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@color/black_shade_1"
-                android:layout_marginBottom="5dp"
-                android:layout_width="100dp"
-                android:padding="5dp"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="10dp">
-            <TextView
-                android:id="@+id/textId3"
-                android:textSize="25dp"
-                android:text="test          "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-                <ImageView
-                    android:id="@+id/daily_img3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_margin="10dp"
-                    android:src="@mipmap/ic_launcher"
-                />
-        </TableRow>
-            <TableRow
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@color/black_shade_1"
-                android:layout_marginBottom="5dp"
-                app:cardElevation="6dp"
-                android:layout_width="100dp"
-                android:padding="5dp"
-                app:cardCornerRadius="10dp">
-                <TextView
-                    android:id="@+id/textId4"
-                    android:textSize="25dp"
-                    android:text="test           "
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                />
-                <ImageView
-                    android:id="@+id/daily_img4"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_margin="10dp"
-                    android:src="@mipmap/ic_launcher"
-                    />
-            </TableRow>
-            <TableRow
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@color/black_shade_1"
-                android:layout_marginBottom="5dp"
-                android:layout_width="100dp"
-                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
                 app:cardElevation="6dp"
                 app:cardCornerRadius="10dp"
                 >
-                <TextView
-                    android:id="@+id/textId5"
-                    android:textSize="25dp"
-                    android:text="test         "
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/textId3"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="gravity"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="25dp"
+                        android:textColor="@color/white"
                     />
-                <ImageView
-                    android:id="@+id/daily_img5"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_margin="10dp"
-                    android:src="@mipmap/ic_launcher"
-                    />
+                    <ImageView
+                        android:id="@+id/daily_img3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/clipart2690182"
+                        />
+                </LinearLayout>
             </TableRow>
             <TableRow
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@color/black_shade_1"
+                android:background="@drawable/bg_rounded"
                 android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
                 app:cardElevation="6dp"
-                android:layout_width="100dp"
-                android:padding="5dp"
-                app:cardCornerRadius="10dp">
-                <TextView
-                    android:id="@+id/textId6"
-                    android:textSize="25dp"
-                    android:text="test        "
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-                <ImageView
-                    android:id="@+id/daily_img6"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_margin="10dp"
-                    android:src="@mipmap/ic_launcher"
-                    />
+                app:cardCornerRadius="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/textId4"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="gravity"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="25dp"
+                        android:textColor="@color/white"
+                        />
+                    <ImageView
+                        android:id="@+id/daily_img4"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/clipart2690182"
+                        />
+                </LinearLayout>
             </TableRow>
             <TableRow
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@color/black_shade_1"
+                android:background="@drawable/bg_rounded"
                 android:layout_marginBottom="5dp"
-                android:layout_width="100dp"
-                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
                 app:cardElevation="6dp"
-                app:cardCornerRadius="10dp">
-                <TextView
-                    android:id="@+id/textId7"
-                    android:textSize="25dp"
-                    android:text="test        "
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-                <ImageView
-                    android:id="@+id/daily_img7"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_margin="10dp"
-                    android:src="@mipmap/ic_launcher"
-                    />
+                app:cardCornerRadius="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/textId5"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="gravity"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="25dp"
+                        android:textColor="@color/white"
+                        />
+                    <ImageView
+                        android:id="@+id/daily_img5"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/clipart2690182"
+                        />
+                </LinearLayout>
             </TableRow>
-
+            <TableRow
+                android:background="@drawable/bg_rounded"
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/textId6"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="gravity"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="25dp"
+                        android:textColor="@color/white"
+                        />
+                    <ImageView
+                        android:id="@+id/daily_img6"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/clipart2690182"
+                        />
+                </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:background="@drawable/bg_rounded"
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="10dp"
+                android:textColor="@color/white"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/textId7"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="gravity"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="25dp"
+                        android:textColor="@color/white"
+                        />
+                    <ImageView
+                        android:id="@+id/daily_img7"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/clipart2690182"
+                        />
+                </LinearLayout>
+            </TableRow>
         </TableLayout>
         </ScrollView>
 
@@ -325,7 +378,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginBottom="18dp"
-            android:text="Today's Weather Forecast"
+            android:text="Hourly Forecast"
             android:textColor="@color/white"
             android:layout_above="@id/idRVWeather"
             android:textStyle="bold"
