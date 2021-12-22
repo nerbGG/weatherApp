@@ -20,24 +20,27 @@
         android:id="@+id/idRLHome"
         android:visibility="gone"
         >
-
         <ImageView
             android:id="@+id/idIVBack"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@color/black_shade_1" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="City Name"
             android:textAlignment="center"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/cardview_light_background"
             android:layout_marginTop="30dp"
             android:padding="20dp"
             android:textSize="18sp"
+            android:textStyle="bold"
+            android:shadowColor="#000"
+            android:shadowDx = "-5"
+            android:shadowDy = "-5"
+            android:shadowRadius = "5"
             android:id="@+id/idTVCityName"
             />
         <LinearLayout
@@ -60,7 +63,12 @@
                 android:hint="Enter City Name"
                 android:padding="5dp"
                 android:textColorHint="@color/white"
-                app:hintTextColor="@color/white">
+                android:shadowColor = "#000"
+                android:textStyle="bold"
+                android:shadowDx = "-5"
+                android:shadowDy = "-5"
+                android:shadowRadius = "5"
+                app:hintTextColor="@color/cardview_light_background">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/idEdtCity"
@@ -70,7 +78,11 @@
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:singleLine="true"
-                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:shadowDx = "-5"
+                    android:shadowDy = "-5"
+                    android:shadowRadius = "5"
+                    android:textColor="@color/cardview_light_background"
                     android:textSize="14sp"
                 />
             </com.google.android.material.textfield.TextInputLayout>
@@ -83,7 +95,7 @@
                     android:layout_weight="0.5"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_search"
-                    app:tint="@color/white"
+                    app:tint="@color/cardview_light_background"
                 />
 
         </LinearLayout>
@@ -102,7 +114,12 @@
             android:background="@drawable/bg_rounded"
             android:padding="2dp"
             android:text="23"
+            android:textStyle="bold"
             android:textColor="@color/cardview_light_background"
+            android:shadowColor = "#000"
+            android:shadowDx = "-5"
+            android:shadowDy = "-5"
+            android:shadowRadius = "5"
             android:textSize="60dp" />
 
         <ImageView
@@ -124,9 +141,13 @@
             android:layout_marginBottom="5dp"
             android:gravity="center"
             android:text="Condition"
+            android:textStyle="bold"
             android:textAlignment="center"
-            android:textColor="@color/white" />
-<!--        android:background="@color/black_shade_1"-->
+            android:shadowColor = "#000"
+            android:shadowDx = "-5"
+            android:shadowDy = "-5"
+            android:shadowRadius = "5"
+            android:textColor="@color/cardview_light_background" />
         <TextView
             android:id="@+id/daily_text"
             android:layout_width="match_parent"
@@ -134,7 +155,11 @@
             android:layout_margin="8dp"
             android:layout_marginBottom="18dp"
             android:text="Daily Forecast"
-            android:textColor="@color/white"
+            android:textColor="@color/cardview_light_background"
+            android:shadowColor = "#000"
+            android:shadowDx = "-5"
+            android:shadowDy = "-5"
+            android:shadowRadius = "5"
             android:textStyle="bold"
             android:layout_below="@+id/idTVCondition"
             />
@@ -153,8 +178,8 @@
             android:orientation="vertical"
             >
             <TableRow
-            android:background="@drawable/bg_rounded"
-            android:layout_marginBottom="5dp"
+                android:background="@drawable/bg_rounded"
+                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 app:cardElevation="6dp"
@@ -171,7 +196,7 @@
                         android:textAlignment="gravity"
                         android:layout_marginLeft="20dp"
                         android:textSize="25dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/cardview_light_background"
                     />
                     <ImageView
                         android:id="@+id/daily_img1"
@@ -202,7 +227,7 @@
                         android:textAlignment="gravity"
                         android:layout_marginLeft="20dp"
                         android:textSize="25dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/cardview_light_background"
                     />
                     <ImageView
                         android:id="@+id/daily_img2"
@@ -233,7 +258,7 @@
                         android:textAlignment="gravity"
                         android:layout_marginLeft="20dp"
                         android:textSize="25dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/cardview_light_background"
                     />
                     <ImageView
                         android:id="@+id/daily_img3"
@@ -264,7 +289,7 @@
                         android:textAlignment="gravity"
                         android:layout_marginLeft="20dp"
                         android:textSize="25dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/cardview_light_background"
                         />
                     <ImageView
                         android:id="@+id/daily_img4"
@@ -295,7 +320,7 @@
                         android:textAlignment="gravity"
                         android:layout_marginLeft="20dp"
                         android:textSize="25dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/cardview_light_background"
                         />
                     <ImageView
                         android:id="@+id/daily_img5"
@@ -326,7 +351,7 @@
                         android:textAlignment="gravity"
                         android:layout_marginLeft="20dp"
                         android:textSize="25dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/cardview_light_background"
                         />
                     <ImageView
                         android:id="@+id/daily_img6"
@@ -345,7 +370,7 @@
                 android:layout_height="25dp"
                 app:cardElevation="6dp"
                 app:cardCornerRadius="10dp"
-                android:textColor="@color/white"
+                android:textColor="@color/cardview_light_background"
                 >
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -358,7 +383,7 @@
                         android:textAlignment="gravity"
                         android:layout_marginLeft="20dp"
                         android:textSize="25dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/cardview_light_background"
                         />
                     <ImageView
                         android:id="@+id/daily_img7"
@@ -379,8 +404,12 @@
             android:layout_margin="8dp"
             android:layout_marginBottom="18dp"
             android:text="Hourly Forecast"
-            android:textColor="@color/white"
+            android:textColor="@color/cardview_light_background"
             android:layout_above="@id/idRVWeather"
+            android:shadowColor = "#000"
+            android:shadowDx = "-5"
+            android:shadowDy = "-5"
+            android:shadowRadius = "5"
             android:textStyle="bold"
             />
 
@@ -390,14 +419,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        />
     </RelativeLayout>
-
-
-
-
-
-
 </RelativeLayout>
